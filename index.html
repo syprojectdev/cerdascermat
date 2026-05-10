@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🌙 Cerdas Cermat Islami</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ========== HALAMAN: INTRO ========== -->
+<div id="page-intro" class="page active">
+  <div class="stars-bg"></div>
+  <div class="floating-icons">
+    <span class="fi fi1">🌙</span>
+    <span class="fi fi2">⭐</span>
+    <span class="fi fi3">🕌</span>
+    <span class="fi fi4">🏮</span>
+    <span class="fi fi5">✨</span>
+    <span class="fi fi6">🌟</span>
+    <span class="fi fi7">🕋</span>
+    <span class="fi fi8">📿</span>
+  </div>
+  <div class="intro-center">
+    <div class="logo-wrap">
+      <div class="logo-moon">🌙</div>
+      <h1 class="title-main">CERDAS CERMAT<br><span class="title-gold">ISLAMI</span></h1>
+      <p class="subtitle">Uji Pengetahuan Islammu Bersama Teman!</p>
+    </div>
+
+    <button class="btn-mega pulse-anim" onclick="goToPage('page-players')">
+      🚀 MULAI!
+    </button>
+
+    <!-- ===== PANEL MUSIK ===== -->
+    <div class="music-panel">
+      <div class="music-panel-title">🎵 Musik Latar</div>
+
+      <div class="music-file-row">
+        <label class="upload-label" for="musicUpload">
+          📂 Pilih File Musik
+        </label>
+        <input type="file" id="musicUpload" accept="audio/*" style="display:none" onchange="loadMusic(this)">
+        <div class="music-name" id="musicName">Belum ada musik</div>
+      </div>
+
+      <div class="music-btns-row">
+        <button class="btn-music-play" id="btnPlayPause" onclick="toggleMusic()" disabled>▶ Play</button>
+        <button class="btn-music-del" id="btnDelMusic" onclick="removeMusic()" disabled>🗑</button>
+      </div>
+
+      <div class="music-vol-row">
+        <span class="vol-icon">🔈</span>
+        <input type="range" class="vol-slider" id="volumeSlider"
+               min="0" max="1" step="0.05" value="0.5"
+               oninput="setMusicVolume(this.value)">
+        <span class="vol-icon">🔊</span>
+      </div>
+
+      <audio id="bgAudio" loop></audio>
+    </div>
+    <!-- ===== END PANEL MUSIK ===== -->
+
+  </div>
+</div>
+
+<!-- ========== HALAMAN: PILIH PEMAIN ========== -->
+<div id="page-players" class="page">
+  <div class="stars-bg"></div>
+  <div class="page-inner">
+    <div class="page-header">
+      <div class="header-icon">👥</div>
+      <h2 class="page-title">Pilih Jumlah Pemain</h2>
+      <p class="page-sub">Siapa saja yang ikut main?</p>
+    </div>
+    <div class="player-cards">
+      <button class="player-card" onclick="selectPlayers(2)">
+        <div class="pc-icon">👫</div>
+        <div class="pc-num">2</div>
+        <div class="pc-label">Pemain</div>
+      </button>
+      <button class="player-card" onclick="selectPlayers(3)">
+        <div class="pc-icon">👨‍👩‍👦</div>
+        <div class="pc-num">3</div>
+        <div class="pc-label">Pemain</div>
+      </button>
+      <button class="player-card" onclick="selectPlayers(4)">
+        <div class="pc-icon">👨‍👩‍👧‍👦</div>
+        <div class="pc-num">4</div>
+        <div class="pc-label">Pemain</div>
+      </button>
+    </div>
+    <button class="btn-back" onclick="goToPage('page-intro')">← Kembali</button>
+  </div>
+</div>
+
+<!-- ========== HALAMAN: PERSIAPAN ========== -->
+<div id="page-prep" class="page">
+  <div class="stars-bg"></div>
+  <div class="page-inner">
+    <div class="prep-top">
+      <div class="prep-timer-ring">
+        <svg viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="8"/>
+          <circle id="prepCircle" cx="60" cy="60" r="52" fill="none" stroke="#FFD700" stroke-width="8"
+            stroke-dasharray="327" stroke-dashoffset="0" stroke-linecap="round"
+            transform="rotate(-90 60 60)"/>
+        </svg>
+        <div class="prep-num" id="prepNum">30</div>
+      </div>
+    </div>
+
+    <!-- 5 slide saja — Skill Aktif sudah dihapus -->
+    <div class="info-carousel">
+      <div class="info-slide active">
+        <div class="info-icon">🎮</div>
+        <h3>Cara Bermain</h3>
+        <p>Pilih kotak soal, jawab dengan cepat dan benar untuk mendapatkan poin!</p>
+      </div>
+      <div class="info-slide">
+        <div class="info-icon">⚡</div>
+        <h3>Skill Pasif</h3>
+        <p>Bonus poin otomatis yang langsung ditambahkan setelah kamu menjawab benar!</p>
+      </div>
+      <div class="info-slide">
+        <div class="info-icon">😅</div>
+        <h3>Zonk!</h3>
+        <p>Tidak mendapatkan bonus apapun. Sabar ya, coba lagi di soal berikutnya!</p>
+      </div>
+      <div class="info-slide">
+        <div class="info-icon">💣</div>
+        <h3>SUPER ZONK!</h3>
+        <p>Bom pengurang poin yang sangat berbahaya! Hati-hati kalau dapat ini!</p>
+      </div>
+      <div class="info-slide">
+        <div class="info-icon">🧠</div>
+        <h3>Bonus Pintar</h3>
+        <p>Jawab dalam 3 detik pertama untuk mendapat bonus ekstra +10 poin!</p>
+      </div>
+    </div>
+    <div class="info-dots" id="infoDots"></div>
+  </div>
+</div>
+
+<!-- ========== HALAMAN: GAME UTAMA ========== -->
+<div id="page-game" class="page">
+
+  <!-- TOP BAR -->
+  <div class="game-topbar">
+    <div class="gtb-left">
+      <div class="turn-badge">🎯 <span id="currentPlayerName">Pemain 1</span></div>
+      <div class="soal-left">📋 <span id="soalLeftNum">70</span> soal</div>
+    </div>
+    <div class="gtb-center">CERDAS CERMAT ISLAMI</div>
+    <div class="gtb-right">
+      <button class="btn-force-end" onclick="showForceEndDialog()">Paksa Selesai</button>
+    </div>
+  </div>
+
+  <!-- BODY: sidebar kiri + grid kanan -->
+  <div class="game-body">
+
+    <!-- SIDEBAR KIRI: scoreboard -->
+    <div class="game-sidebar" id="scoreboard"></div>
+
+    <!-- GRID SOAL: penuh sisa layar -->
+    <div class="grid-wrap">
+      <div class="question-grid" id="questionGrid"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ========== OVERLAY: COUNTDOWN 5 DETIK ========== -->
+<div id="overlay-countdown" class="overlay hidden">
+  <div class="overlay-box countdown-box">
+    <div class="ov-label">SOAL AKAN DIMULAI</div>
+    <div class="ov-big-num" id="cdNum">5</div>
+    <div class="ov-emoji">🎯</div>
+  </div>
+</div>
+
+<!-- ========== OVERLAY: PERTANYAAN ========== -->
+<div id="overlay-question" class="overlay hidden">
+  <div class="overlay-box question-box">
+    <div class="q-player-badge" id="qPlayerBadge">👤 Pemain 1</div>
+    <div class="q-text" id="qText">Soal akan muncul di sini...</div>
+    <div class="timer-wrap">
+      <svg class="timer-svg" viewBox="0 0 120 120">
+        <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="8"/>
+        <circle id="timerCircle" cx="60" cy="60" r="52" fill="none" stroke="#00E5FF" stroke-width="8"
+          stroke-dasharray="327" stroke-dashoffset="0" stroke-linecap="round"
+          transform="rotate(-90 60 60)"/>
+      </svg>
+      <div class="timer-num" id="timerNum">10</div>
+    </div>
+    <div class="choices-grid hidden" id="choicesGrid"></div>
+    <div class="reading-indicator" id="readingIndicator">
+      <div class="reading-wave"></div>
+      <span>Membacakan soal...</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== OVERLAY: HASIL JAWABAN ========== -->
+<div id="overlay-result" class="overlay hidden">
+  <div class="overlay-box result-box" id="resultBox">
+    <div class="result-icon" id="resultIcon">✅</div>
+    <div class="result-title" id="resultTitle">BENAR!</div>
+    <div class="result-explain" id="resultExplain"></div>
+    <div class="result-bonus" id="resultBonus"></div>
+    <button class="btn-next" id="resultNextBtn">Lanjut ➡️</button>
+  </div>
+</div>
+
+<!-- ========== OVERLAY: BONUS SPINNER ========== -->
+<div id="overlay-bonus" class="overlay hidden">
+  <div class="overlay-box bonus-box">
+    <div class="bonus-icon" id="bonusIcon">🎰</div>
+    <div class="bonus-title" id="bonusTitle">Spinning...</div>
+    <div class="bonus-val" id="bonusVal"></div>
+    <button class="btn-next hidden" id="bonusNextBtn">Lanjut ➡️</button>
+  </div>
+</div>
+
+<!-- ========== DIALOG: PAKSA SELESAI ========== -->
+<div id="dialog-force" class="overlay hidden">
+  <div class="overlay-box dialog-box">
+    <div class="dialog-icon">⚠️</div>
+    <h3>Yakin ingin mengakhiri permainan?</h3>
+    <p>Skor saat ini akan dijadikan hasil akhir.</p>
+    <div class="dialog-btns">
+      <button class="btn-yes" onclick="forceEnd()">Ya, Selesai!</button>
+      <button class="btn-no" onclick="closeForceDialog()">Lanjut Main</button>
+    </div>
+  </div>
+</div>
+
+<!-- ========== HALAMAN: HASIL AKHIR ========== -->
+<div id="page-result" class="page">
+  <div class="stars-bg"></div>
+  <div class="confetti-wrap" id="confettiWrap"></div>
+  <div class="result-page-inner">
+    <div class="result-header">
+      <div class="trophy">🏆</div>
+      <h2 class="result-page-title">JUARA CERDAS CERMAT ISLAMI</h2>
+    </div>
+    <div class="podium-wrap" id="podiumWrap"></div>
+    <div class="final-stats" id="finalStats"></div>
+    <div class="result-btns">
+      <button class="btn-mega-green" onclick="restartGame()">🔄 Main Lagi!</button>
+      <button class="btn-mega-outline" onclick="goToPage('page-intro')">🏠 Menu Awal</button>
+    </div>
+  </div>
+</div>
+
+<script src="questions.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
